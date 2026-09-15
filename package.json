@@ -1,0 +1,131 @@
+{
+  "name": "phone-call-manager",
+  "displayName": "Call Desk",
+  "description": "Pair an Android phone with VS Code to monitor cellular call activity, connection status, notifications, and recent call history.",
+  "version": "0.1.3",
+  "publisher": "sufyaanahmad",
+  "repository": "https://github.com/SufyaanHub/Call-Desk",
+  "license": "MIT",
+  "icon": "media/call-desk-icon.png",
+  "keywords": [
+    "Android",
+    "phone calls",
+    "call management",
+    "cellular calls",
+    "call notifications",
+    "phone pairing",
+    "QR code"
+  ],
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onView:phoneCallManager.calls",
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Call Desk",
+      "properties": {
+        "phoneCallManager.backendUrl": {
+          "type": "string",
+          "default": "wss://backend-calldesk.onrender.com",
+          "description": "WebSocket URL of the Call Desk backend. Default is the production server (wss://backend-calldesk.onrender.com). For local development, use ws://localhost:8080. For a LAN backend, use ws://<PC-LAN-IP>:8080."
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "phoneCallManager",
+          "title": "Call Desk",
+          "icon": "media/phone.svg"
+        }
+      ]
+    },
+    "views": {
+      "phoneCallManager": [
+        {
+          "id": "phoneCallManager.calls",
+          "name": "Call Desk"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "phoneCallManager.connectPhone",
+        "title": "Connect your phone",
+        "category": "Call Desk",
+        "icon": "$(device-mobile)"
+      },
+      {
+        "command": "phoneCallManager.refreshCalls",
+        "title": "Refresh",
+        "category": "Call Desk",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "phoneCallManager.showCurrentCall",
+        "title": "Show Current Call",
+        "category": "Call Desk"
+      },
+      {
+        "command": "phoneCallManager.showCallHistory",
+        "title": "Show Call History",
+        "category": "Call Desk"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "phoneCallManager.connectPhone",
+          "when": "view == phoneCallManager.calls",
+          "group": "navigation"
+        },
+        {
+          "command": "phoneCallManager.refreshCalls",
+          "when": "view == phoneCallManager.calls",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "phoneCallManager.connectPhone",
+          "when": "view == phoneCallManager.calls && viewItem == phoneDisconnected"
+        },
+        {
+          "command": "phoneCallManager.showCurrentCall",
+          "when": "view == phoneCallManager.calls && viewItem == currentCall"
+        },
+        {
+          "command": "phoneCallManager.showCallHistory",
+          "when": "view == phoneCallManager.calls && viewItem == recentCalls"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "build": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx scripts/test-call-events.ts && tsx scripts/test-sidebar-view-model.ts && tsx scripts/test-pairing-restore.ts && tsx scripts/test-phone-call-tree.ts && tsx scripts/test-backend-url.ts"
+  },
+  "dependencies": {
+    "qrcode": "^1.5.4",
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "@types/qrcode": "^1.5.5",
+    "@types/vscode": "^1.85.0",
+    "@types/ws": "^8.18.1",
+    "tsx": "^4.23.13",
+    "typescript": "^5.8.3"
+  }
+}
