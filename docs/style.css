@@ -65,7 +65,7 @@ a {
 .header-inner {
   width: min(var(--max), calc(100% - 48px));
   max-width: 100%;
-  min-height: 54px;
+  min-height: 64px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -76,18 +76,19 @@ a {
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   color: var(--ink);
-  font-weight: 750;
-  letter-spacing: -0.03em;
+  font-size: 1.08rem;
+  font-weight: 800;
+  letter-spacing: -0.035em;
   white-space: nowrap;
 }
 
 .brand img {
-  width: 34px;
-  height: 34px;
+  width: 42px;
+  height: 42px;
   object-fit: contain;
-  border-radius: 9px;
+  border-radius: 11px;
 }
 
 .site-nav {
@@ -326,12 +327,138 @@ h1 {
   50% { box-shadow: 0 0 0 5px rgba(26, 143, 214, 0.08); }
 }
 
+@keyframes videoShine {
+  0%, 55% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes barPulse {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(160%); }
+}
+
 .hero-product {
   position: relative;
   width: 100%;
   max-width: 100%;
   min-height: 600px;
 }
+
+.hero-video {
+  position: absolute;
+  top: 18px;
+  right: 8px;
+  z-index: 1;
+  width: min(430px, 82%);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 24px 60px rgba(17, 19, 24, 0.1);
+  overflow: hidden;
+}
+
+.video-frame {
+  padding: 10px;
+  background: #111318;
+}
+
+.video-screen {
+  position: relative;
+  min-height: 210px;
+  padding: 22px;
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 70% 20%, rgba(26, 143, 214, 0.28), transparent 34%),
+    linear-gradient(145deg, #1a2434, #0c111a);
+  overflow: hidden;
+}
+
+.video-screen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, 0.08) 45%, transparent 60%);
+  transform: translateX(-100%);
+  animation: videoShine 5.8s ease-in-out infinite;
+}
+
+.video-status {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  padding: 6px 9px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  color: #bfe7fb;
+  font-size: 0.64rem;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+}
+
+.video-call {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 12px;
+  align-items: center;
+  margin-top: 42px;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+.video-call i {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--brand);
+  box-shadow: 0 0 24px rgba(26, 143, 214, 0.42);
+}
+
+.video-call strong,
+.video-call small {
+  display: block;
+}
+
+.video-call strong {
+  color: #fff;
+  font-size: 0.98rem;
+}
+
+.video-call small {
+  color: #9fb1c7;
+}
+
+.video-bars {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 6px;
+  margin-top: 24px;
+}
+
+.video-bars span {
+  width: 34px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  overflow: hidden;
+}
+
+.video-bars span::after {
+  content: "";
+  display: block;
+  width: 40%;
+  height: 100%;
+  background: var(--brand-bright);
+  animation: barPulse 2.8s ease-in-out infinite;
+}
+
+.video-bars span:nth-child(2)::after { animation-delay: 0.4s; }
+.video-bars span:nth-child(3)::after { animation-delay: 0.8s; }
 
 .hero-logo {
   position: absolute;
@@ -1053,8 +1180,13 @@ h1 {
   }
 
   .hero-product {
-    min-height: 610px;
+    min-height: 650px;
     max-width: 390px;
+  }
+
+  .hero-video {
+    width: min(330px, 92%);
+    right: 0;
   }
 
   .phone-mockup {
@@ -1116,7 +1248,11 @@ h1 {
   }
 
   .hero-product {
-    min-height: 560px;
+    min-height: 600px;
+  }
+
+  .hero-video {
+    width: calc(100% - 10px);
   }
 
   .phone-mockup {
