@@ -59,6 +59,9 @@ export function activate(context: vscode.ExtensionContext): void {
     vscode.commands.registerCommand("phoneCallManager.connectPhone", () => {
       pairing.open();
     }),
+    vscode.commands.registerCommand("phoneCallManager.downloadAndroidApp", () =>
+      vscode.env.openExternal(vscode.Uri.parse("https://sufyaanhub.github.io/Call-Desk/")),
+    ),
     vscode.commands.registerCommand("phoneCallManager.refreshCalls", () => {
       treeProvider.refresh();
     }),

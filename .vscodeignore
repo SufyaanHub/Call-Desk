@@ -3,6 +3,7 @@
 src/**
 scripts/**
 docs/**
+media/Call-Desk-icon (2).png
 .gitignore
 .git/**
 tsconfig.json

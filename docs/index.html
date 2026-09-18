@@ -3,111 +3,294 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Call Desk — Connect Android with Visual Studio Code</title>
-  <meta name="description" content="Call Desk detects cellular call events on your Android phone and synchronizes them with Visual Studio Code.">
+  <title>Call Desk — Your phone calls, right where you work</title>
+  <meta name="description" content="Call Desk detects incoming, active, missed, and completed cellular calls on Android and brings them into Visual Studio Code.">
   <meta name="theme-color" content="#1A8FD6">
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/call-desk-icon.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="wrap site-header">
-    <a class="brand" href="#top">
-      <img src="assets/logo.svg" width="36" height="36" alt="">
-      Call Desk
-    </a>
-    <a class="github-link" href="https://github.com/SufyaanHub/Call-Desk">GitHub</a>
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="Call Desk home">
+        <img src="assets/logo.svg" width="34" height="34" alt="">
+        <span>Call Desk</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="siteNav">
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#download">Download</a>
+        <a href="https://github.com/SufyaanHub/Call-Desk">GitHub</a>
+        <a class="nav-action" href="https://marketplace.visualstudio.com/items?itemName=sufyaanahmad.phone-call-manager">Install Extension</a>
+      </nav>
+    </div>
   </header>
 
-  <section class="wrap hero" id="top">
-    <div class="hero-card">
-      <p class="kicker">Android + Visual Studio Code</p>
-      <h1>Call Desk</h1>
-      <p class="lede">Connect your Android phone with Visual Studio Code.</p>
-      <p class="desc">Call Desk detects cellular call events on your Android phone and synchronizes them with Visual Studio Code.</p>
-      <div class="actions">
-        <a class="button button-primary" href="https://github.com/SufyaanHub/Call-Desk/releases/latest/download/CallDesk-1.0.1.apk">
-          Download Android App
-        </a>
-        <a class="button button-secondary" href="https://marketplace.visualstudio.com/items?itemName=sufyaanahmad.phone-call-manager">
-          Install VS Code Extension
-        </a>
+  <main id="top">
+    <section class="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <span class="glow glow-one"></span>
+        <span class="glow glow-two"></span>
+        <span class="grid"></span>
+        <span class="dots"></span>
       </div>
-      <p class="note">Call Desk monitors call activity. It does not answer, reject, or record calls.</p>
-    </div>
-  </section>
+      <div class="wrap hero-layout">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Android + Visual Studio Code</p>
+          <h1>Your phone calls,<br>right where you work.</h1>
+          <p class="hero-lede">Connect your Android phone to VS Code and see cellular call activity in real time.</p>
+          <p class="hero-description">Call Desk detects incoming, active, missed, and completed cellular calls on your Android phone and brings the activity directly into Visual Studio Code.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://github.com/SufyaanHub/Call-Desk/releases/latest/download/CallDesk-1.0.1.apk">Download Android App</a>
+            <a class="button button-secondary" href="https://marketplace.visualstudio.com/items?itemName=sufyaanahmad.phone-call-manager">Install VS Code Extension</a>
+          </div>
+          <p class="hero-note">Free • Android + VS Code • Simple QR pairing</p>
+        </div>
 
-  <main class="wrap">
-    <section class="panel" id="how-it-works">
-      <h2>How it works</h2>
-      <ol class="steps">
-        <li>
-          <span class="step-num">1</span>
-          <p>Install Call Desk on Android</p>
-        </li>
-        <li>
-          <span class="step-num">2</span>
-          <p>Install Call Desk in VS Code</p>
-        </li>
-        <li>
-          <span class="step-num">3</span>
-          <p>Open the extension and generate the pairing QR</p>
-        </li>
-        <li>
-          <span class="step-num">4</span>
-          <p>Scan the QR code from the Android app</p>
-        </li>
-        <li>
-          <span class="step-num">5</span>
-          <p>Keep the phone connected in the background</p>
-        </li>
-      </ol>
+        <div class="product-visual reveal" aria-label="Call Desk Android and VS Code product preview">
+          <div class="visual-caption visual-caption-phone">Android Phone</div>
+          <div class="visual-caption visual-caption-vscode">VS Code</div>
+          <div class="connection-track" aria-hidden="true">
+            <span class="connection-line"></span>
+            <span class="connection-pulse"></span>
+            <span class="particle particle-one"></span>
+            <span class="particle particle-two"></span>
+          </div>
+          <div class="phone-mockup float-slow">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="android-status"><span>CONNECTED</span><i></i></div>
+              <div class="android-brand"><img src="assets/logo.svg" width="34" height="34" alt=""><span>Call Desk</span></div>
+              <div class="incoming-card">
+                <span class="call-icon"></span>
+                <div>
+                  <p>Incoming Call</p>
+                  <strong>+91 XXXXX XXXXX</strong>
+                  <span>Ringing now</span>
+                </div>
+              </div>
+              <div class="phone-status-grid">
+                <span>Phone connected</span>
+                <span>Background active</span>
+              </div>
+            </div>
+          </div>
+          <div class="vscode-panel float-soft">
+            <div class="panel-top"><span></span><span></span><span></span></div>
+            <div class="panel-body">
+              <p class="panel-title">CALL DESK</p>
+              <div class="panel-status"><i></i> Connected</div>
+              <div class="panel-section">
+                <p>CURRENT CALL</p>
+                <div class="panel-call active">
+                  <span>Incoming Call</span>
+                  <strong>+91 XXXXX XXXXX</strong>
+                </div>
+              </div>
+              <div class="panel-section">
+                <p>RECENT CALLS</p>
+                <div class="panel-call"><span>Missed Call</span></div>
+                <div class="panel-call"><span>Completed Call</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section class="panel" id="requirements">
-      <h2>Requirements</h2>
-      <ul class="requirements">
-        <li>
-          <span class="dot" aria-hidden="true"></span>
-          <p>Android phone</p>
-        </li>
-        <li>
-          <span class="dot" aria-hidden="true"></span>
-          <p>Visual Studio Code</p>
-        </li>
-        <li>
-          <span class="dot" aria-hidden="true"></span>
-          <p>Internet connection</p>
-        </li>
-        <li>
-          <span class="dot" aria-hidden="true"></span>
-          <p>Required Android permissions</p>
-        </li>
-      </ul>
+    <section class="trust-strip" aria-label="Call Desk ecosystem">
+      <div class="wrap trust-inner reveal">
+        <span>CALL DESK</span>
+        <span>Android</span>
+        <span>VS Code</span>
+        <span>WebSocket</span>
+        <span>QR Pairing</span>
+      </div>
     </section>
 
-    <section class="panel" id="versions">
-      <h2>Latest versions</h2>
-      <ul class="versions">
-        <li>
-          <span class="dot" aria-hidden="true"></span>
-          <p>Android App: <strong>1.0.1</strong></p>
-        </li>
-        <li>
-          <span class="dot" aria-hidden="true"></span>
-          <p>VS Code Extension: <strong>0.1.3</strong></p>
-        </li>
-      </ul>
-      <p class="meta">
-        Source and releases:
-        <a href="https://github.com/SufyaanHub/Call-Desk">github.com/SufyaanHub/Call-Desk</a>
-      </p>
+    <section class="section" id="features">
+      <div class="wrap">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Product</p>
+          <h2>Everything you need to stay connected.</h2>
+          <p>Call Desk keeps phone call activity visible in the editor without changing how you place or manage calls.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card feature-large reveal">
+            <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M6.4 3.2 10 6.8 7.6 9.2a10.8 10.8 0 0 0 7.2 7.2l2.4-2.4 3.6 3.6-1.5 1.5a3 3 0 0 1-3.2.7C8.7 18.1 5.9 15.3 4.2 7.9a3 3 0 0 1 .7-3.2z"/></svg></div>
+            <h3>Real-time Call Detection</h3>
+            <p>Detect incoming, active, missed, and completed cellular calls.</p>
+          </article>
+          <article class="feature-card reveal">
+            <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v12H4zM8 20h8M12 16v4"/></svg></div>
+            <h3>VS Code Integration</h3>
+            <p>See call activity directly inside Visual Studio Code.</p>
+          </article>
+          <article class="feature-card reveal">
+            <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 4a8 8 0 0 1 8 8v6H4v-6a8 8 0 0 1 8-8zM8 18v2m8-2v2"/></svg></div>
+            <h3>Background Connection</h3>
+            <p>The Android app continues communicating in the background after the UI is closed.</p>
+          </article>
+          <article class="feature-card feature-wide reveal">
+            <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h2v2h-2zM18 14h2v2h-2zM14 18h2v2h-2zM18 18h2v2h-2z"/></svg></div>
+            <h3>QR Pairing</h3>
+            <p>Pair the Android phone with VS Code quickly using QR pairing.</p>
+          </article>
+          <article class="feature-card reveal">
+            <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M5 12a7 7 0 0 1 14 0M8 12a4 4 0 0 1 8 0M12 12v8"/></svg></div>
+            <h3>Connection Status</h3>
+            <p>See whether the phone is connected, reconnecting, or disconnected.</p>
+          </article>
+          <article class="feature-card reveal">
+            <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 5v7l4 2M4 12a8 8 0 1 0 16 0 8 8 0 0 0-16 0z"/></svg></div>
+            <h3>Recent Call Activity</h3>
+            <p>View recent in-memory call activity directly inside VS Code.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section showcase" id="showcase">
+      <div class="wrap">
+        <div class="section-heading centered reveal">
+          <p class="eyebrow">Product preview</p>
+          <h2>One connection. Two screens.</h2>
+          <p>Android reports call state. Call Desk relays it. VS Code shows it where you are already working.</p>
+        </div>
+        <div class="showcase-stage reveal">
+          <div class="showcase-phone float-slow">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="android-status"><span>CONNECTED</span><i></i></div>
+              <div class="android-brand"><img src="assets/logo.svg" width="34" height="34" alt=""><span>Call Desk</span></div>
+              <div class="connected-block">
+                <span class="connected-dot"></span>
+                <p>Phone connected</p>
+                <small>Background connection active</small>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-connection" aria-hidden="true">
+            <span></span>
+            <i></i>
+            <span></span>
+          </div>
+          <div class="showcase-vscode float-soft">
+            <div class="panel-top"><span></span><span></span><span></span></div>
+            <div class="panel-body">
+              <p class="panel-title">CALL DESK</p>
+              <div class="panel-status"><i></i> Connected</div>
+              <div class="panel-section">
+                <p>CURRENT CALL</p>
+                <div class="panel-call active">
+                  <span>+91 XXXXX XXXXX</span>
+                  <strong>In Progress</strong>
+                </div>
+              </div>
+              <div class="panel-section">
+                <p>RECENT CALLS</p>
+                <div class="panel-call"><span>Missed</span></div>
+                <div class="panel-call"><span>Completed</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how-it-works">
+      <div class="wrap">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Setup</p>
+          <h2>How it works</h2>
+        </div>
+        <div class="process reveal">
+          <div class="process-line" aria-hidden="true"></div>
+          <article>
+            <span>01</span>
+            <h3>Install Call Desk on Android</h3>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Install the VS Code extension</h3>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Generate the pairing QR</h3>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>Scan and connect</h3>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section download" id="download">
+      <div class="wrap">
+        <div class="download-card reveal">
+          <div class="download-copy">
+            <p class="eyebrow">Download</p>
+            <h2>Get Call Desk</h2>
+            <p>Connect your Android phone to Visual Studio Code in a few minutes.</p>
+          </div>
+          <div class="download-options">
+            <a class="download-option" href="https://github.com/SufyaanHub/Call-Desk/releases/latest/download/CallDesk-1.0.1.apk">
+              <span>ANDROID APP</span>
+              <strong>Download APK</strong>
+              <small>Android App 1.0.1</small>
+            </a>
+            <a class="download-option" href="https://marketplace.visualstudio.com/items?itemName=sufyaanahmad.phone-call-manager">
+              <span>VS CODE</span>
+              <strong>Install Extension</strong>
+              <small>VS Code Extension 0.1.6</small>
+            </a>
+          </div>
+          <div class="download-links">
+            <a href="https://github.com/SufyaanHub/Call-Desk">GitHub</a>
+            <a href="https://marketplace.visualstudio.com/items?itemName=sufyaanahmad.phone-call-manager">VS Code Marketplace</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="limitations reveal">
+      <div class="wrap">
+        <p><strong>Call Desk monitors cellular call activity.</strong> It does not answer or reject calls, record calls, send SMS, or synchronize contacts.</p>
+      </div>
     </section>
   </main>
 
-  <footer class="wrap site-footer">
-    <p>© 2026 Sufyaan Ahmad</p>
-    <a href="https://github.com/SufyaanHub/Call-Desk">GitHub</a>
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <a class="brand footer-brand" href="#top">
+          <img src="assets/logo.svg" width="32" height="32" alt="">
+          <span>Call Desk</span>
+        </a>
+        <p>Android + Visual Studio Code</p>
+      </div>
+      <nav aria-label="Footer navigation">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#download">Download</a>
+        <a href="https://github.com/SufyaanHub/Call-Desk">GitHub</a>
+      </nav>
+      <div class="footer-links">
+        <a href="https://github.com/SufyaanHub/Call-Desk">GitHub</a>
+        <a href="https://marketplace.visualstudio.com/items?itemName=sufyaanahmad.phone-call-manager">VS Code Marketplace</a>
+      </div>
+    </div>
+    <div class="wrap footer-bottom">
+      <p>© 2026 Sufyaan Ahmad</p>
+    </div>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>

@@ -40,6 +40,10 @@ To install a local package:
 2. Select **...** → **Install from VSIX...**.
 3. Choose the Call Desk `.vsix` file.
 
+## Android App
+
+Install the Call Desk Android app from the [official Call Desk landing page](https://sufyaanhub.github.io/Call-Desk/). You can open the same page from VS Code with **Call Desk: Download Android App** or the **Download Android App** action in the Call Desk sidebar. After installation, grant the required Android permissions and pair the app with the extension using the QR code.
+
 ## Pair your phone
 
 1. Open **Call Desk** in the Activity Bar.
