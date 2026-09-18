@@ -2,8 +2,6 @@ const header = document.getElementById("siteHeader");
 const menuToggle = document.querySelector(".menu-toggle");
 const siteNav = document.getElementById("siteNav");
 const revealElements = document.querySelectorAll(".reveal");
-const showcaseStage = document.getElementById("showcaseStage");
-const parallaxItems = document.querySelectorAll(".parallax-item");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 function updateHeader() {
@@ -41,47 +39,4 @@ if (reducedMotion) {
   );
 
   revealElements.forEach((element) => observer.observe(element));
-}
-
-if (!reducedMotion && showcaseStage && parallaxItems.length > 0) {
-  let targetX = 0;
-  let targetY = 0;
-  let currentX = 0;
-  let currentY = 0;
-  let frame = null;
-
-  function renderParallax() {
-    currentX += (targetX - currentX) * 0.08;
-    currentY += (targetY - currentY) * 0.08;
-
-    parallaxItems.forEach((item) => {
-      const depth = Number(item.dataset.depth || 0);
-      item.style.transform = `translate3d(${currentX * depth * 100}px, ${currentY * depth * 100}px, 0)`;
-    });
-
-    if (Math.abs(targetX - currentX) > 0.001 || Math.abs(targetY - currentY) > 0.001) {
-      frame = requestAnimationFrame(renderParallax);
-    } else {
-      frame = null;
-    }
-  }
-
-  function queueParallax() {
-    if (frame === null) {
-      frame = requestAnimationFrame(renderParallax);
-    }
-  }
-
-  showcaseStage.addEventListener("mousemove", (event) => {
-    const rect = showcaseStage.getBoundingClientRect();
-    targetX = (event.clientX - rect.left) / rect.width - 0.5;
-    targetY = (event.clientY - rect.top) / rect.height - 0.5;
-    queueParallax();
-  });
-
-  showcaseStage.addEventListener("mouseleave", () => {
-    targetX = 0;
-    targetY = 0;
-    queueParallax();
-  });
 }
