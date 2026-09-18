@@ -6,6 +6,10 @@ import { formatRecentCallDescription } from "./phoneCallViewModel";
 export type PhoneCallTreeElement =
   | { kind: "connectionSection" }
   | { kind: "status" }
+  | { kind: "onboardingSection" }
+  | { kind: "onboardingHint" }
+  | { kind: "installAndroid" }
+  | { kind: "pairAndroid" }
   | { kind: "currentSection" }
   | { kind: "currentCall" }
   | { kind: "currentCaller" }
@@ -25,7 +29,8 @@ export type TreeIconId =
   | "call-incoming"
   | "call"
   | "plug"
-  | "history";
+  | "history"
+  | "cloud-download";
 
 export interface PhoneCallTreeItemData {
   id: string;
@@ -39,8 +44,13 @@ export interface PhoneCallTreeItemData {
   command: string | undefined;
 }
 
-export function getRootTreeElements(): PhoneCallTreeElement[] {
-  return [{ kind: "connectionSection" }, { kind: "currentSection" }, { kind: "recentSection" }];
+export function getRootTreeElements(model: PhoneCallViewModel): PhoneCallTreeElement[] {
+  const elements: PhoneCallTreeElement[] = [{ kind: "connectionSection" }];
+  if (model.status === "disconnected") {
+    elements.push({ kind: "onboardingSection" });
+  }
+  elements.push({ kind: "currentSection" }, { kind: "recentSection" });
+  return elements;
 }
 
 export function getTreeChildren(
@@ -48,11 +58,15 @@ export function getTreeChildren(
   model: PhoneCallViewModel,
 ): PhoneCallTreeElement[] {
   if (element === undefined) {
-    return getRootTreeElements();
+    return getRootTreeElements(model);
   }
 
   if (element.kind === "connectionSection") {
     return [{ kind: "status" }];
+  }
+
+  if (element.kind === "onboardingSection") {
+    return [{ kind: "onboardingHint" }, { kind: "installAndroid" }, { kind: "pairAndroid" }];
   }
 
   if (element.kind === "currentSection") {
@@ -81,6 +95,14 @@ export function treeElementFromContextValue(contextValue: string | undefined): P
     case "phoneDisconnected":
     case "phoneStatus":
       return { kind: "status" };
+    case "onboardingSection":
+      return { kind: "onboardingSection" };
+    case "onboardingHint":
+      return { kind: "onboardingHint" };
+    case "installAndroid":
+      return { kind: "installAndroid" };
+    case "pairAndroid":
+      return { kind: "pairAndroid" };
     case "currentSection":
       return { kind: "currentSection" };
     case "recentCalls":
@@ -105,6 +127,26 @@ export function getTreeItemData(
       return sectionItemData("Connection", "connectionSection", "connection-section", "plug");
     case "status":
       return statusItemData(model);
+    case "onboardingSection":
+      return sectionItemData("Get started", "onboardingSection", "onboarding-section", "device-mobile");
+    case "onboardingHint":
+      return placeholderItemData("Install the app, then pair", "onboarding-hint");
+    case "installAndroid":
+      return actionItemData(
+        "1. Install Android App",
+        "install-android",
+        "Download the Call Desk Android app APK.",
+        "phoneCallManager.downloadAndroidApp",
+        "cloud-download",
+      );
+    case "pairAndroid":
+      return actionItemData(
+        "2. Pair Android Phone",
+        "pair-android",
+        "Open the existing QR pairing flow.",
+        "phoneCallManager.connectPhone",
+        "device-mobile",
+      );
     case "currentSection":
       return sectionItemData("CURRENT CALL", "currentSection", "current-call-section");
     case "recentSection":
@@ -173,6 +215,26 @@ function placeholderItemData(label: string, id: string): PhoneCallTreeItemData {
     iconColor: undefined,
     contextValue: "placeholder",
     command: undefined,
+  };
+}
+
+function actionItemData(
+  label: string,
+  id: string,
+  tooltip: string,
+  command: string,
+  icon: TreeIconId,
+): PhoneCallTreeItemData {
+  return {
+    id,
+    label,
+    description: "",
+    tooltip,
+    collapsible: "none",
+    icon,
+    iconColor: undefined,
+    contextValue: id,
+    command,
   };
 }
 

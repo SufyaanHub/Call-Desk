@@ -6,10 +6,17 @@ docs/**
 media/Call-Desk-icon (2).png
 .gitignore
 .git/**
+→
 tsconfig.json
 package-lock.json
 **/*.map
 **/*.ts
+node_modules/**/README*
+node_modules/**/CHANGELOG*
+node_modules/**/CONTRIBUTING*
+node_modules/**/.jshintrc
+node_modules/**/.npmignore
+node_modules/qrcode/bin/**
 **/*.log
 **/*.env
 **/.env*

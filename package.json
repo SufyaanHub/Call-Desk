@@ -2,7 +2,7 @@
   "name": "phone-call-manager",
   "displayName": "Call Desk",
   "description": "Pair an Android phone with VS Code to monitor cellular call activity, connection status, notifications, and recent call history.",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "publisher": "sufyaanahmad",
   "repository": "https://github.com/SufyaanHub/Call-Desk",
   "license": "MIT",
@@ -58,13 +58,13 @@
     "commands": [
       {
         "command": "phoneCallManager.connectPhone",
-        "title": "Connect your phone",
+        "title": "Pair Android Phone",
         "category": "Call Desk",
         "icon": "$(device-mobile)"
       },
       {
         "command": "phoneCallManager.downloadAndroidApp",
-        "title": "Download Android App",
+        "title": "Install Android App",
         "category": "Call Desk",
         "icon": "$(cloud-download)"
       },

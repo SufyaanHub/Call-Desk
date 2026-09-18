@@ -4,6 +4,22 @@ Call Desk connects the Call Desk Android app to VS Code so you can see cellular 
 
 Repository: [github.com/SufyaanHub/Call-Desk](https://github.com/SufyaanHub/Call-Desk)
 
+## Android App
+
+Call Desk requires the Call Desk Android app to detect cellular call activity.
+
+Download the Android app:
+
+[Download Call Desk Android](https://github.com/SufyaanHub/Call-Desk/releases/latest/download/CallDesk-1.0.1.apk)
+
+1. Install the Android app.
+2. Open the Call Desk extension in VS Code.
+3. Start **Pair Android Phone**.
+4. Scan the QR code using the Android app.
+5. Keep the phone connected in the background.
+
+For the full installation guide, visit the [Call Desk setup website](https://sufyaanhub.github.io/Call-Desk/).
+
 ## What it does
 
 - Shows phone connection status in the Activity Bar, sidebar, and status bar.
@@ -40,16 +56,13 @@ To install a local package:
 2. Select **...** → **Install from VSIX...**.
 3. Choose the Call Desk `.vsix` file.
 
-## Android App
-
-Install the Call Desk Android app from the [official Call Desk landing page](https://sufyaanhub.github.io/Call-Desk/). You can open the same page from VS Code with **Call Desk: Download Android App** or the **Download Android App** action in the Call Desk sidebar. After installation, grant the required Android permissions and pair the app with the extension using the QR code.
-
 ## Pair your phone
 
 1. Open **Call Desk** in the Activity Bar.
-2. Run **Call Desk: Connect your phone**.
-3. Scan the displayed QR code with the Call Desk Android app.
-4. Wait for **Phone connected successfully.**
+2. Select **Install Android App** if you have not installed it yet.
+3. Run **Call Desk: Pair Android Phone** and choose **Continue to Pairing**.
+4. Scan the displayed QR code with the Call Desk Android app.
+5. Wait for **Phone connected successfully.**
 
 The pairing is restored automatically after an extension reload when the same backend still knows the pairing. Use **Re-pair with new QR** only when you intentionally want a new pairing.
 
@@ -85,7 +98,7 @@ Only use a backend you trust. For production, keep the default `wss://` endpoint
 ## Troubleshooting
 
 - **Unable to connect to the backend:** confirm the configured endpoint and network access.
-- **Phone is not paired:** run **Call Desk: Connect your phone** and scan a new QR code.
+- **Phone is not paired:** run **Call Desk: Pair Android Phone** and scan a new QR code.
 - **Connection lost:** wait for automatic reconnect, or open the pairing page and choose **Retry Connection**.
 - **Pairing does not restore:** confirm that the Android app is still paired and that the same backend endpoint is configured.
 

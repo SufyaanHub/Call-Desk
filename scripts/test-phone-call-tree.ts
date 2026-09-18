@@ -25,9 +25,11 @@ function main(): void {
   assert(getTreeItemData({ kind: "status" }, disconnected).id === "phone-status", "1. status id is unique");
   assert(getTreeItemData({ kind: "currentSection" }, disconnected).id === "current-call-section", "1. current section id is unique");
   assert(getTreeItemData({ kind: "recentSection" }, disconnected).id === "recent-calls-section", "1. recent section id is unique");
-  assert(root.length === 3, "1. root has connection + two sections");
+  assert(root.length === 4, "1. root has connection, onboarding, and two sections");
   assert(root[0]?.kind === "connectionSection", "1. first root item is connection");
+  assert(root[1]?.kind === "onboardingSection", "1. disconnected root includes onboarding");
   assert(getTreeItemData(root[0], disconnected).label === "Connection", "1. connection section label");
+  assert(getTreeItemData(root[1], disconnected).label === "Get started", "1. onboarding section label");
 
   const disconnectedItem = getTreeItemData({ kind: "status" }, disconnected);
   assert(disconnectedItem.label === "Disconnected", "3. disconnected state renders");
@@ -165,6 +167,12 @@ function main(): void {
   assert(Array.isArray(afterReload) && afterReload.length === 3, "13. reload still returns root children");
   assert(getTreeChildren({ kind: "connectionSection" }, model(PhoneConnectionStatus.CONNECTED))[0]?.kind === "status", "13. connection section contains status");
   assert(getTreeChildren({ kind: "status" }, model(PhoneConnectionStatus.CONNECTED)).length === 0, "13. leaf getChildren is an empty array");
+
+  const onboardingChildren = getTreeChildren({ kind: "onboardingSection" }, disconnected);
+  assert(onboardingChildren.length === 3, "14. onboarding section has guidance, install, and pair actions");
+  assert(getTreeItemData(onboardingChildren[0]!, disconnected).label === "Install the app, then pair", "14. onboarding explains the order");
+  assert(getTreeItemData(onboardingChildren[1]!, disconnected).command === "phoneCallManager.downloadAndroidApp", "14. install action opens Android app");
+  assert(getTreeItemData(onboardingChildren[2]!, disconnected).command === "phoneCallManager.connectPhone", "14. pair action opens existing QR flow");
 
   console.log("phone call tree checks passed");
 }

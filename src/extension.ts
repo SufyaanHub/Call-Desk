@@ -17,8 +17,13 @@ import { PhoneCallTreeProvider } from "./sidebar/phoneCallTreeProvider";
 import { CallDeskStatusBar } from "./ui/callDeskStatusBar";
 import { PairingPanel } from "./ui/pairingPanel";
 import { BackendWebSocketClient, ConnectionState } from "./websocket/backendWebSocketClient";
+import { ANDROID_APP_DOWNLOAD_URL } from "./androidApp";
 
 const INVALID_BACKEND_URL_MESSAGE = "Invalid Call Desk backend URL.";
+
+function installAndroidApp(): Thenable<boolean> {
+  return vscode.env.openExternal(vscode.Uri.parse(ANDROID_APP_DOWNLOAD_URL));
+}
 
 export function activate(context: vscode.ExtensionContext): void {
   const backendUrl = { current: readInitialBackendUrl() };
@@ -56,12 +61,28 @@ export function activate(context: vscode.ExtensionContext): void {
       }
       applyBackendUrlSetting(backendUrl, pairing, true);
     }),
-    vscode.commands.registerCommand("phoneCallManager.connectPhone", () => {
+    vscode.commands.registerCommand("phoneCallManager.connectPhone", async () => {
+      if (pairing.phoneConnectionStatus === "disconnected") {
+        const selection = await vscode.window.showInformationMessage(
+          "Install the Call Desk Android app first, then scan the pairing QR code.",
+          {
+            modal: true,
+            detail: "1. Install Call Desk on your Android phone.\n2. Open the Android app.\n3. Tap Pair / Scan QR.\n4. Scan the QR code shown in VS Code.",
+          },
+          "Install Android App",
+          "Continue to Pairing",
+        );
+        if (selection === "Install Android App") {
+          await installAndroidApp();
+          return;
+        }
+        if (selection !== "Continue to Pairing") {
+          return;
+        }
+      }
       pairing.open();
     }),
-    vscode.commands.registerCommand("phoneCallManager.downloadAndroidApp", () =>
-      vscode.env.openExternal(vscode.Uri.parse("https://sufyaanhub.github.io/Call-Desk/")),
-    ),
+    vscode.commands.registerCommand("phoneCallManager.downloadAndroidApp", installAndroidApp),
     vscode.commands.registerCommand("phoneCallManager.refreshCalls", () => {
       treeProvider.refresh();
     }),
