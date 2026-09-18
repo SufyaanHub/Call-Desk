@@ -256,6 +256,76 @@ h1 {
   font-size: 0.92rem;
 }
 
+.connection-line {
+  position: absolute;
+  left: 250px;
+  right: 210px;
+  top: 50%;
+  z-index: 1;
+  height: 2px;
+  max-width: calc(100% - 460px);
+  background: linear-gradient(90deg, transparent, rgba(26, 143, 214, 0.42), transparent);
+}
+
+.connection-line span {
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--brand);
+  box-shadow: 0 0 18px rgba(26, 143, 214, 0.46);
+  animation: connectionPulse 3.8s linear infinite;
+}
+
+.float-slow {
+  animation: floatSlow 7s ease-in-out infinite;
+}
+
+.float-soft {
+  animation: floatSoft 8s ease-in-out infinite;
+}
+
+.flow-step,
+.feature-card,
+.timeline-step,
+.download-option {
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.flow-step:hover,
+.timeline-step:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.panel-call.active {
+  animation: callGlow 3.2s ease-in-out infinite;
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes floatSoft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(7px); }
+}
+
+@keyframes connectionPulse {
+  0% { left: 0; opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { left: calc(100% - 10px); opacity: 0; }
+}
+
+@keyframes callGlow {
+  0%, 100% { box-shadow: 0 0 0 rgba(26, 143, 214, 0); }
+  50% { box-shadow: 0 0 0 5px rgba(26, 143, 214, 0.08); }
+}
+
 .hero-product {
   position: relative;
   width: 100%;
@@ -1003,6 +1073,13 @@ h1 {
     right: 0;
   }
 
+  .connection-line {
+    left: 70px;
+    right: 70px;
+    top: 238px;
+    max-width: calc(100% - 140px);
+  }
+
   .flow,
   .features,
   .timeline,
@@ -1050,6 +1127,10 @@ h1 {
   .vscode-panel {
     top: 246px;
     width: calc(100% - 10px);
+  }
+
+  .connection-line {
+    top: 226px;
   }
 
   .showcase-stage {
